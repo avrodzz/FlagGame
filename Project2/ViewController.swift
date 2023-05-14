@@ -36,9 +36,9 @@ class ViewController: UIViewController {
     }
     
     func askQuestion(action: UIAlertAction! = nil) {
-        title = "Country Name"
-        correctAnswer = Int.random(in: 0...2)
         countries.shuffle()
+        correctAnswer = Int.random(in: 0...2)
+        title = countries[correctAnswer].uppercased()
         
         button1.setImage(UIImage(named: countries[0]), for: .normal)
         button2.setImage(UIImage(named: countries[1]), for: .normal)
@@ -58,15 +58,12 @@ class ViewController: UIViewController {
             score -= 1
         }
         
-        title = countries[correctAnswer].uppercased()
         scoreLabel.text = "Score: \(score)"
         
         let ac = UIAlertController(title: status, message: "Your score is \(score)", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         present(ac, animated: true)
-        
     }
     
-
 }
 
